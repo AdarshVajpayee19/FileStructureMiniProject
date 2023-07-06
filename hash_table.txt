@@ -1,0 +1,10 @@
+Bucket 0: ////
+Bucket 1: 1|12|Adu|3890.0, 1111|213|Adarsh Bhai ki jai|2345.0, 111|24|Sunil|35000.0, 1111111|21|Prajwal|358.0, 
+Bucket 2: ////
+Bucket 3: ////
+Bucket 4: ////
+Bucket 5: ////
+Bucket 6: ////
+Bucket 7: ////
+Bucket 8: ////
+Bucket 9: ////
