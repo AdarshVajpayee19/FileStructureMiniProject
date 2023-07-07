@@ -1,4 +1,1 @@
-Account Number: 1 | Date: 12 | Description: Adu | Amount: 3890.0
-Account Number: 1111 | Date: 213 | Description: Adarsh Bhai ki jai | Amount: 2345.0
-Account Number: 111 | Date: 24 | Description: Sunil | Amount: 35000.0
-Account Number: 1111111 | Date: 21 | Description: Prajwal | Amount: 358.0
+Account Number: 12 | Date: 34 | Description: Ada | Amount: 24.0

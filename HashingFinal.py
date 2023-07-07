@@ -19,6 +19,92 @@ class Transaction:
 def hashFunction(accountNo):
     return accountNo % 10
 
+# def insertTransaction():
+#     insert_window = tk.Toplevel(window)
+#     insert_window.title("Insert Transaction")
+#     insert_window.geometry("1000x800")
+
+#     # Load the background image
+#     background_image = Image.open("Fs.jpeg")
+#     background_photo = ImageTk.PhotoImage(background_image)
+
+#     # Create a Label widget to hold the background image
+#     background_label = tk.Label(insert_window, image=background_photo)
+#     background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+#     # Create a Frame to hold the content
+#     frame = tk.Frame(insert_window, bg="white")
+#     frame.pack(expand=True, padx=50, pady=50)
+
+#     def insertLogic():
+#         accountNo = int(account_entry.get())
+#         date = date_entry.get()
+#         description = description_entry.get()
+#         amount = float(amount_entry.get())
+#         hashValue = hashFunction(accountNo)
+#         bucket = hashTable[hashValue]
+#         if len(bucket) < 4:
+#             # Generate a unique transaction ID
+#             transactionId = f"Txn-{len(bucket)+1}"
+#             transaction = Transaction(accountNo, date, description, amount, transactionId)
+#             bucket.append(transaction)
+#             messagebox.showinfo("Insert Transaction", "Transaction inserted successfully!")
+
+#             # Replace the "#" symbol with the transaction ID in transactions.txt
+#             with open("transactions.txt", "a") as file:
+#                 file.write(f"Account Number: {transaction.accountNo} | Date: {transaction.date} | Description: {transaction.description} | Amount: {transaction.amount}\n")
+#             saveTransactionsToFile()
+#             saveHashTableToFile()
+#         else:
+#             messagebox.showerror("Insert Transaction", "Maximum number of transactions reached for this hash key.")
+
+#     # Set the font size
+#     font_size = 16
+
+#     # Create labels and entry fields for user input
+#     account_label = tk.Label(frame, text="Account Number:", font=("Arial", font_size), bg="white")
+#     account_label.grid(row=0, column=0, sticky="e")
+#     account_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#     account_entry.grid(row=0, column=1, pady=10)
+
+#     date_label = tk.Label(frame, text="Date:", font=("Arial", font_size), bg="white")
+#     date_label.grid(row=1, column=0, sticky="e")
+#     date_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#     date_entry.grid(row=1, column=1, pady=10)
+
+#     description_label = tk.Label(frame, text="Description:", font=("Arial", font_size), bg="white")
+#     description_label.grid(row=2, column=0, sticky="e")
+#     description_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#     description_entry.grid(row=2, column=1, pady=10)
+
+#     amount_label = tk.Label(frame, text="Amount:", font=("Arial", font_size), bg="white")
+#     amount_label.grid(row=3, column=0, sticky="e")
+#     amount_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#     amount_entry.grid(row=3,column=1, pady=10)
+
+#     # Create an insert button with border radius and hover effect
+#     button_style = ttk.Style()
+#     button_style.configure("InsertButton.TButton",
+#                            font=("Arial", font_size),
+#                            background="green",
+#                            foreground="green",
+#                            borderwidth=1,
+#                            relief="solid",
+#                            padding=10,
+#                            bordercolor="black",
+#                            borderradius=15,
+#                            )
+#     button_style.map("InsertButton.TButton",
+#                      background=[("active", "darkgreen"), ("hover", "darkgreen")],
+#                      foreground=[("hover", "black")]
+#                      )
+
+#     insert_button = ttk.Button(frame, text="Insert", style="InsertButton.TButton", command=insertLogic)
+#     insert_button.grid(row=4, columnspan=2, pady=10)
+
+#     insert_window.mainloop()
+
+
 def insertTransaction():
     insert_window = tk.Toplevel(window)
     insert_window.title("Insert Transaction")
@@ -432,6 +518,161 @@ def updateTransactionsFile():
         file.write(transactionDetails)
     saveTransactionsToFile()
     saveHashTableToFile()
+
+# def deleteTransaction():
+#     # Create a new top-level window with increased size
+#     delete_window = tk.Toplevel(window)
+#     delete_window.title("Delete Transaction")
+#     delete_window.geometry("1000x800")
+#     # delete_window.configure(bg="#6f66f7")
+#     background_image = Image.open("Fs.jpeg")
+#     background_photo = ImageTk.PhotoImage(background_image)
+
+#     # Create a Label widget to hold the background image
+#     background_label = tk.Label(delete_window, image=background_photo)
+#     background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+#     def deleteLogic():
+#         accountNo = int(account_entry.get())
+#         description = description_entry.get()
+#         hashValue = hashFunction(accountNo)
+#         bucket = hashTable[hashValue]
+#         matchingTransactions = []
+
+#         for transaction in bucket:
+#             if transaction.accountNo == accountNo and transaction.description == description:
+#                 matchingTransactions.append(transaction)
+#                 transaction.accountNo = '#'
+
+#         if len(matchingTransactions) == 0:
+#             messagebox.showinfo("Delete Transaction", "No transactions found for the specified account number.")
+#         elif len(matchingTransactions) == 1:
+#             messagebox.showinfo("Delete Transaction", "Transaction deleted successfully!")
+#             updateTransactionsFile1()
+
+#         else:
+#             deleteWindow = tk.Toplevel(window)
+#             deleteWindow.title("Delete Transaction")
+#             deleteWindow.geometry("1000x800")
+#             # deleteWindow.configure(bg="light blue")
+#             background_image = Image.open("Fs.jpeg")
+#             background_photo = ImageTk.PhotoImage(background_image)
+
+#             # Create a Label widget to hold the background image
+#             background_label = tk.Label(deleteWindow, image=background_photo)
+#             background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+#             selectionVar = tk.IntVar()
+#             selectionVar.set(-1)
+
+#             def deleteConfirmationButtonPressed():
+#                 selection = selectionVar.get()
+
+#                 if selection >= 0 and selection < len(matchingTransactions):
+#                     transaction = matchingTransactions[selection]
+#                     confirmation = messagebox.askyesno(
+#                         "Delete Transaction",
+#                         "Are you sure you want to delete this transaction?\n\nAccount Number: {}\nDate: {}\nDescription: {}\nAmount: {}".format(
+#                             transaction.accountNo, transaction.date, transaction.description, transaction.amount),
+#                     )
+
+#                     if confirmation:
+#                         #bucket.remove(transaction)
+#                         matchingTransactions.append(transaction)
+#                         transaction.accountNo = '#'
+#                         messagebox.showinfo("Delete Transaction", "Transaction deleted successfully!")
+#                         updateTransactionsFile1()
+#                         deleteWindow.destroy()
+#                 else:
+#                     messagebox.showerror("Delete Transaction", "Invalid selection. Please select a valid index.")
+
+#             # Set the font size and button color
+#             font_size = 12
+#             button_color = "red"
+
+#             frame = tk.Frame(deleteWindow, bg="white")
+#             frame.pack(expand=True, padx=50, pady=50)
+
+#             accountNoLabel = tk.Label(frame, text="Account Number:", font=("Arial", font_size), bg="white")
+#             accountNoLabel.grid(row=0, column=0, sticky="e")
+#             accountNoEntry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#             accountNoEntry.grid(row=0, column=1, pady=10)
+#             accountNoEntry.config(highlightthickness=1, highlightbackground="black")
+
+#             selectionLabel = tk.Label(frame, text="Select Transaction to Delete:", font=("Arial", font_size), bg="white")
+#             selectionLabel.grid(row=1, column=0, sticky="e")
+
+#             for i, transaction in enumerate(matchingTransactions):
+#                 radioBtn = tk.Radiobutton(
+#                     frame,
+#                     text=f"Transaction {i+1}",
+#                     variable=selectionVar,
+#                     value=i,
+#                     font=("Arial", font_size),
+#                     bg="white"
+#                 )
+#                 radioBtn.grid(row=i+2, column=0, sticky="w", padx=10, pady=5)
+
+#             # Create a delete button with border radius and hover effect
+#             button_style = ttk.Style()
+#             button_style.configure("DeleteButton.TButton",
+#                                    font=("Arial", font_size),
+#                                    background=button_color,
+#                                    foreground="black",
+#                                    borderwidth=2,
+#                                    relief="solid",
+#                                    padding=10,
+#                                    bordercolor="black",
+#                                    borderradius=15)
+#             button_style.map("DeleteButton.TButton",
+#                              background=[("active", button_color), ("hover", button_color)],
+#                              foreground=[("hover", "red")])
+
+#             deleteConfirmationBtn = ttk.Button(frame, text="Delete", style="DeleteButton.TButton", command=deleteConfirmationButtonPressed)
+#             deleteConfirmationBtn.grid(row=len(matchingTransactions)+2, column=0, columnspan=2, pady=10)
+
+#     # Set the font size and button color
+#     font_size = 16
+#     button_color = "red"
+
+#     # Create a Frame to hold the content
+#     frame = tk.Frame(delete_window, bg="white")
+#     frame.pack(expand=True, padx=50, pady=50)
+
+#     # Create labels and entry fields for user input
+#     account_label = tk.Label(frame, text="Account Number:", font=("Arial", font_size), bg="white")
+#     account_label.grid(row=0, column=0, sticky="e")
+#     account_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#     account_entry.grid(row=0, column=1, pady=10)
+#     account_entry.config(highlightthickness=1, highlightbackground="black")
+
+#     description_label = tk.Label(frame, text="Transaction Description:", font=("Arial", font_size), bg="white")
+#     description_label.grid(row=1, column=0, sticky="e")
+#     description_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
+#     description_entry.grid(row=1, column=1, pady=10)
+#     description_entry.config(highlightthickness=1, highlightbackground="black")
+
+#     # Create a delete button with border radius and hover effect
+#     button_style = ttk.Style()
+#     button_style.configure("DeleteButton.TButton",
+#                            font=("Arial", font_size),
+#                            background=button_color,
+#                            foreground="black",
+#                            borderwidth=2,
+#                            relief="solid",
+#                            padding=10,
+#                            bordercolor="black",
+#                            borderradius=15)
+#     button_style.map("DeleteButton.TButton",
+#                      background=[("active", button_color), ("hover", button_color)],
+#                      foreground=[("hover", "red")])
+
+#     delete_button = ttk.Button(frame, text="Delete", style="DeleteButton.TButton", command=deleteLogic)
+#     delete_button.grid(row=2, columnspan=2, pady=10)
+
+#     delete_window.mainloop()
+
+
 
 def deleteTransaction():
     # Create a new top-level window with increased size
