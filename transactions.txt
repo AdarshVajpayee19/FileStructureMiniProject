@@ -1,1 +1,6 @@
-Account Number: 11 | Date: 1 | Description: Ad | Amount: 3.0
+Account Number: 111 | Date: 11-11-2001 | Description: Ash | Amount: 350000
+Account Number: 11 | Date: 12-03-2001 | Description: Ashley | Amount: 20000.0
+Account Number: 1211 | Date: 13-12-1980 | Description: Dada | Amount: 213.0
+Account Number: 111 | Date: 25-10-2012 | Description: Russia | Amount: 3243.0
+Account Number: 12 | Date: 12-12-2001 | Description: asd | Amount: 243.0
+Account Number: 133 | Date: 13-03-1999 | Description: Ashley | Amount: 2300.0

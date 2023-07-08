@@ -3,6 +3,7 @@ from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk
 from tkinter import Grid
 from tkinter import ttk
+import re
 
 # Hash table to store transactions
 hashTable = [[] for _ in range(10)]
@@ -36,9 +37,20 @@ def insertTransaction():
     frame = tk.Frame(insert_window, bg="white")
     frame.pack(expand=True, padx=50, pady=50)
 
+
+    def validateDate(date):
+        pattern = r"\d{2}-\d{2}-\d{4}"
+        if not re.match(pattern, date):
+            messagebox.showerror("Insert Transaction", "Please enter the date in DD-mm-yyyy format.")
+            return False
+        return True
+    
     def insertLogic():
         accountNo = int(account_entry.get())
         date = date_entry.get()
+        # Validate the date format
+        if not validateDate(date_entry.get()):
+            return
         description = description_entry.get()
         amount = float(amount_entry.get())
         hashValue = hashFunction(accountNo)
@@ -83,7 +95,7 @@ def insertTransaction():
     account_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
     account_entry.grid(row=0, column=1, pady=10)
 
-    date_label = tk.Label(frame, text="Date:", font=("Arial", font_size), bg="white")
+    date_label = tk.Label(frame, text="Enter Date:(dd-mm-yyyy)", font=("Arial", font_size), bg="white")
     date_label.grid(row=1, column=0, sticky="e")
     date_entry = tk.Entry(frame, font=("Arial", font_size), bd=1, relief="solid")
     date_entry.grid(row=1, column=1, pady=10)
@@ -176,7 +188,7 @@ def searchTransaction():
             searchWindow = tk.Toplevel(window)
             searchWindow.title("Transaction Details")
             searchWindow.geometry("1000x800")
-            search_window.configure(bg="#6f66f7")
+            searchWindow.configure(bg="#cffaf8")
 
             # background_image = Image.open("Fs.jpeg")
             # background_photo = ImageTk.PhotoImage(background_image)
@@ -275,10 +287,10 @@ def updateTransaction():
         elif len(matchingTransactions) == 1:
             transaction = matchingTransactions[0]
 
-            update_window = tk.Toplevel(window)
-            update_window.title("Update Transaction")
-            update_window.geometry("1000x800")
-            update_window.configure(bg="#6f66f7")
+            updateWindow = tk.Toplevel(window)
+            updateWindow.title("Update Transaction")
+            updateWindow.geometry("1000x800")
+            updateWindow.configure(bg="#cffaf8")
 
             # background_image = Image.open("Fs.jpeg")
             # background_photo = ImageTk.PhotoImage(background_image)
@@ -287,7 +299,7 @@ def updateTransaction():
             # background_label = tk.Label(update_window, image=background_photo)
             # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-            frame = tk.Frame(update_window, bg="white")
+            frame = tk.Frame(updateWindow, bg="white")
             frame.pack(expand=True, padx=50, pady=50)
 
             description_label = tk.Label(frame, text="Enter New Description:", font=("Arial", font_size), bg="white")
@@ -337,10 +349,10 @@ def updateTransaction():
             if selection is not None and selection >= 0:
                 transaction = matchingTransactions[selection]
 
-                update_window = tk.Toplevel(window)
-                update_window.title("Update Transaction")
-                update_window.geometry("1000x800")
-                update_window.configure(bg="#6f66f7")
+                updateWindow = tk.Toplevel(window)
+                updateWindow.title("Update Transaction")
+                updateWindow.geometry("1000x800")
+                updateWindow.configure(bg="#cffaf8")
 
                 # background_image = Image.open("Fs.jpeg")
                 # background_photo = ImageTk.PhotoImage(background_image)
@@ -349,7 +361,7 @@ def updateTransaction():
                 # background_label = tk.Label(update_window, image=background_photo)
                 # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-                frame = tk.Frame(update_window, bg="white")
+                frame = tk.Frame(updateWindow, bg="white")
                 frame.pack(expand=True, padx=50, pady=50)
 
                 description_label = tk.Label(frame, text="Enter New Description:", font=("Arial", font_size), bg="white")
@@ -471,13 +483,14 @@ def deleteTransaction():
             deleteWindow = tk.Toplevel(window)
             deleteWindow.title("Delete Transaction")
             deleteWindow.geometry("1000x800")
-            # deleteWindow.configure(bg="light blue")
-            background_image = Image.open("Fs.jpeg")
-            background_photo = ImageTk.PhotoImage(background_image)
+            deleteWindow.configure(bg="light blue")
 
-            # Create a Label widget to hold the background image
-            background_label = tk.Label(deleteWindow, image=background_photo)
-            background_label.place(x=0, y=0, relwidth=1, relheight=1)
+            # background_image = Image.open("Fs.jpeg")
+            # background_photo = ImageTk.PhotoImage(background_image)
+
+            # # Create a Label widget to hold the background image
+            # background_label = tk.Label(deleteWindow, image=background_photo)
+            # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
             selectionVar = tk.IntVar()
             selectionVar.set(-1)
@@ -606,14 +619,15 @@ def displayTransactions():
         displayWindow = tk.Toplevel(window)
         displayWindow.title("Display Transactions")
         displayWindow.geometry("1000x800")
+        displayWindow.configure(bg="#cffaf8")
 
         # Load the background image
-        background_image = Image.open("Fs.jpeg")
-        background_photo = ImageTk.PhotoImage(background_image)
+        # background_image = Image.open("Fs.jpeg")
+        # background_photo = ImageTk.PhotoImage(background_image)
 
-        # Create a Label widget to hold the background image
-        background_label = tk.Label(displayWindow, image=background_photo)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        # # Create a Label widget to hold the background image
+        # background_label = tk.Label(displayWindow, image=background_photo)
+        # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Make the label fill the entire window
         displayWindow.resizable(width=True, height=True)
@@ -683,17 +697,18 @@ def displayHashTable():
         displayWindow = tk.Toplevel(window)
         displayWindow.title("Display Hash Table")
         displayWindow.geometry("1000x800")
+        displayWindow.configure(bg="#cffaf8")
 
         # Load the background image
-        background_image = Image.open("Fs.jpeg")
-        background_photo = ImageTk.PhotoImage(background_image)
+        # background_image = Image.open("Fs.jpeg")
+        # background_photo = ImageTk.PhotoImage(background_image)
 
         # Create a Canvas widget to hold the background image
         canvas = tk.Canvas(displayWindow, width=1000, height=250)
         canvas.pack(fill=tk.BOTH, expand=True)
 
         # Set the background image on the canvas
-        canvas.create_image(0, 0, image=background_photo, anchor=tk.NW)
+        # canvas.create_image(0, 0, image=background_photo, anchor=tk.NW)
 
         # Create a Frame to hold the content
         frame = tk.Frame(canvas)
