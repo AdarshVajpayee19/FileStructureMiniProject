@@ -176,13 +176,14 @@ def searchTransaction():
             searchWindow = tk.Toplevel(window)
             searchWindow.title("Transaction Details")
             searchWindow.geometry("1000x800")
+            search_window.configure(bg="#6f66f7")
 
-            background_image = Image.open("Fs.jpeg")
-            background_photo = ImageTk.PhotoImage(background_image)
+            # background_image = Image.open("Fs.jpeg")
+            # background_photo = ImageTk.PhotoImage(background_image)
 
-            # Create a Label widget to hold the background image
-            background_label = tk.Label(searchWindow, image=background_photo)
-            background_label.place(x=0, y=0, relwidth=1, relheight=1)
+            # # Create a Label widget to hold the background image
+            # background_label = tk.Label(searchWindow, image=background_photo)
+            # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
             for transaction in matchingTransactions:
                 transactionDetails = f"Account Number: {transaction.accountNo}\n" \
@@ -277,13 +278,14 @@ def updateTransaction():
             update_window = tk.Toplevel(window)
             update_window.title("Update Transaction")
             update_window.geometry("1000x800")
+            update_window.configure(bg="#6f66f7")
 
-            background_image = Image.open("Fs.jpeg")
-            background_photo = ImageTk.PhotoImage(background_image)
+            # background_image = Image.open("Fs.jpeg")
+            # background_photo = ImageTk.PhotoImage(background_image)
 
-            # Create a Label widget to hold the background image
-            background_label = tk.Label(update_window, image=background_photo)
-            background_label.place(x=0, y=0, relwidth=1, relheight=1)
+            # # Create a Label widget to hold the background image
+            # background_label = tk.Label(update_window, image=background_photo)
+            # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
             frame = tk.Frame(update_window, bg="white")
             frame.pack(expand=True, padx=50, pady=50)
@@ -338,13 +340,14 @@ def updateTransaction():
                 update_window = tk.Toplevel(window)
                 update_window.title("Update Transaction")
                 update_window.geometry("1000x800")
+                update_window.configure(bg="#6f66f7")
 
-                background_image = Image.open("Fs.jpeg")
-                background_photo = ImageTk.PhotoImage(background_image)
+                # background_image = Image.open("Fs.jpeg")
+                # background_photo = ImageTk.PhotoImage(background_image)
 
-                # Create a Label widget to hold the background image
-                background_label = tk.Label(update_window, image=background_photo)
-                background_label.place(x=0, y=0, relwidth=1, relheight=1)
+                # # Create a Label widget to hold the background image
+                # background_label = tk.Label(update_window, image=background_photo)
+                # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
                 frame = tk.Frame(update_window, bg="white")
                 frame.pack(expand=True, padx=50, pady=50)
